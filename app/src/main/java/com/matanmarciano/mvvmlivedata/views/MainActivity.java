@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,7 +17,6 @@ import com.matanmarciano.mvvmlivedata.viewmodels.MainActivityViewModel;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @BindingAdapter({"items"})
-    public void items(final View view, List<Model> models) {
+    public void items(final RecyclerView recyclerView, List<Model> models) {
         Log.i("LIVE_DATA_TEST", "Let's see if this method is reached");
+
+        // TODO: update recyclerView adapter...
     }
 }
