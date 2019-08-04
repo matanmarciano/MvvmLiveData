@@ -27,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     @BindingAdapter({"items"})
     public void items(final RecyclerView recyclerView, List<Model> models) {
-        Log.i("LIVE_DATA_TEST", "Let's see if this method is reached");
 
-        // TODO: update recyclerView adapter...
+        for (Model model : models) {
+            Log.i("LIVE_DATA_TEST", "Model name: " + model.getName() + ", Model Number: " + model.getNumber());
+        }
     }
 }

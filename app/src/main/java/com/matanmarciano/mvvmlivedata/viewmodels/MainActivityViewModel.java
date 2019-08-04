@@ -30,6 +30,6 @@ public class MainActivityViewModel extends BaseObservable {
     }
 
     private void setModelsLiveData(List<Model> modelsList) {
-        modelsLiveData.postValue(modelsList);
+        modelsLiveData.setValue(modelsList);
     }
 }
