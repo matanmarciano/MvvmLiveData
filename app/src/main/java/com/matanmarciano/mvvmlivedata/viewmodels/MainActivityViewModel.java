@@ -3,9 +3,11 @@ package com.matanmarciano.mvvmlivedata.viewmodels;
 import android.arch.lifecycle.MutableLiveData;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.os.AsyncTask;
 
 import com.matanmarciano.mvvmlivedata.models.Model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +17,26 @@ public class MainActivityViewModel extends BaseObservable {
     public MainActivityViewModel() {
         this.modelsLiveData = new MutableLiveData<>();
 
-        List<Model> modelsList = new ArrayList<>();
-        modelsList.add(new Model("Suzuki Swift", 2761111));
-        modelsList.add(new Model("Renoult Megan", 3679060));
-        modelsList.add(new Model("Fiat Panda", 4638764));
-        modelsList.add(new Model("Fiat 500", 1234567));
-        modelsList.add(new Model("Toyota Land Crouser", 9876543));
-        setModelsLiveData(modelsList);
+        fetchModels();
+    }
+
+    private void fetchModels() {
+        AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... noParams) {
+                List<Model> modelsList = new ArrayList<>();
+                modelsList.add(new Model("Suzuki Swift"));
+                modelsList.add(new Model("Renoult Megan"));
+                modelsList.add(new Model("Fiat Panda"));
+                modelsList.add(new Model("Fiat 500"));
+                modelsList.add(new Model("Toyota Land Crouser"));
+
+                setModelsLiveData(modelsList);
+
+                return null;
+            }
+        };
+        asyncTask.execute();
     }
 
     @Bindable
@@ -30,6 +45,6 @@ public class MainActivityViewModel extends BaseObservable {
     }
 
     private void setModelsLiveData(List<Model> modelsList) {
-        modelsLiveData.setValue(modelsList);
+        modelsLiveData.postValue(modelsList);
     }
 }

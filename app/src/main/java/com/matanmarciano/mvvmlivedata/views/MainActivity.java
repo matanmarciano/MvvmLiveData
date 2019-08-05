@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     public void items(final RecyclerView recyclerView, List<Model> models) {
 
         for (Model model : models) {
-            Log.i("LIVE_DATA_TEST", "Model name: " + model.getName() + ", Model Number: " + model.getNumber());
+            Log.i("LIVE_DATA_TEST", "Model name: " + model.getName());
         }
     }
 }
